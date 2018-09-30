@@ -1,0 +1,145 @@
+= Introducción a Kotlin
+:icons: font
+:twitter-tag: UDE
+:conference-tag:
+:talk-tag: Intro Kotlin
+:slide-link:
+:demo-link:
+:linkattrs:
+
+include::footer.ad[]
+
+[NOTE.speaker]
+====
+Contenido de la presentación:
+
+* ¿Qué es Kotlin?
+* Características
+* Server side development
+* Android
+* Sintaxis
+
+====
+
+== !
+image::kotlin-2-logo-png-transparent.png[background, size=auto]
+// https://freebiesupply.com/logos/kotlin-logo-2/
+
+== Contenido
+* ¿Qué es Kotlin?
+* Características
+* Server side development
+* Android
+* Sintaxis
+
+== ¿Qué es Kotlin?
+* Kotlin es un lenguaje de programación con tipado estático para aplicaciones multiplataforma.
+* Fue creado por la compañía checa JetBrains en 2010 y liberado bajo licencia Apache en 2011.
+* Su nombre proviene de la Isla Kotlin ubicada al oeste de San Petersburgo, Rusia.
+
+== Características
+
+== Conciso
+
+Tiene estructuras que ayudan a reducir el código repetitivo.
+
+== Seguro
+Ofrece control en compilación de referencias nulas y conversiones inválidas de clases.
+
+== Interoperable
+Es compatible con Java y Android.
+
+== Amistoso
+
+Soportado por los entornos de desarrollo de JetBrains (IntelliJ IDEA, Android Studio) y de terceros.
+
+== Server side development (Backend)
+
+* Expresividad
+* Escalabilidad
+* Interoperabilidad
+* Migración
+* Herramientas
+* Compatibilidad
+
+[NOTE.speaker]
+====
+Expresividad: Este lenguaje se destaca en presentar sintaxis innovadora para reducir el código repetitivo y manejar con facilidad abstracciones.
+
+Escalabilidad: Kotlin soporta corrutinas que nos permiten usar programación asincrónica, esto nos beneficia al momento de acceder a recursos (precisamos de ellos solo cuando son necesarios) y nos ofrece facilidad para escalar.
+	Interoperabilidad: Es compatible con las librerías y los frameworks Java.
+
+Migración: Puede usarse en conjunto con una base de código Java, lo que nos permite hacer una migración gradual de los sistemas. Esto nos habilita para escribir nuevas funcionalidades con Kotlin y dejar funcionalidades antiguas con Java.
+
+Herramientas: Soporta IDEs populares como IntelliJ y Eclipse, además ofrece plugins especiales para integración con Frameworks.
+
+Compatibilidad: Lo podemos utilizar con Spring, Vert.x, Ktor y kotlinx.html.
+
+====
+
+== Android
+* Compatibilidad
+* Rendimiento
+* Interoperabilidad
+* Tamaño
+* Tiempo de compilación
+* Curva de aprendizaje
+
+[NOTE.speaker]
+====
+Compatibilidad: Es totalmente compatible con el JDK 6, por lo que las aplicaciones desarrolladas con Kotlin pueden ser instaladas en dispositivos Android con versiones antiguas sin inconvenientes.
+
+Rendimiento: Ofrece un rendimiento igual al de Java y en algunos casos superior.
+
+Interoperabilidad: Al ser compatible con Java, las librerías existentes en Android se pueden usar en Kotlin.
+
+Tamaño: El runtime para Android es chico, solo se agregan en promedio 100KB extras al apk.
+	Tiempo de compilación: Ha sido optimizado para ser eficiente en compilación incremental.
+
+Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicionalmente los IDEs ofrecen herramientas para convertir código Java a Kotlin. JetBrains también ofrece guías y tutoriales para los que deseen aprender.
+
+====
+
+== Sintaxis
+
+[source,java]
+----
+package com.proitc.kotlin
+
+data class EstudianteKotlin(
+                      val nombre: String,
+                      val puntaje: Int? = null)
+
+fun main(args: Array<String>) {
+  val estudiantes =
+    listOf(EstudianteKotlin("Julia"),
+      EstudianteKotlin("Marco", puntaje = 12))
+
+  val mayorPuntaje =
+    estudiantes.maxBy { it.puntaje ?: 0 }
+
+  println(
+    '''El mayor puntaje en Kotlin es de:
+      $mayorPuntaje''')
+
+}
+----
+
+== Conclusiones
+* Sintaxis moderna
+* Inferencia de tipos
+* Control de nulos
+* Sintaxis flexible y programación asincrónica
+* Compatible con Java
+
+[NOTE.speaker]
+====
+Kotlin es un lenguaje Open Source moderno con muchas características como: soporte de inferencia de tipos, control de nulos en tiempo de compilación, programación asíncrona y sintaxis flexible. Además, es compatible con el ecosistema Java y podemos usarlo en backend de servidores y aplicaciones Android.
+
+A esto podemos agregar que nos permite combinar programación orientada objetos y funcional con una sintaxis amigable y expresiva.
+
+Al compararlo con Java vemos que una de las principales diferencias es lo conciso y expresivo de su código.
+
+====
+
+include::self.ad[]
