@@ -460,4 +460,8 @@ section[data-background-size] .footer span {
   box-shadow: none;
 }
 
+.reveal pre {
+  box-shadow: none;
+}
+
 /*# sourceMappingURL=ude.css.map */
