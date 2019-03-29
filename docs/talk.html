@@ -434,12 +434,122 @@ Considerar también que el tipo de la variable se define luego de su declaració
 <span class="namespace">import</span> <span class="namespace">java.util</span>.*
 
 <span class="comment">// ...</span></code></pre></section>
+<section id="_definición_de_funciones"><h2>Definición de funciones</h2><div class="paragraph"><p>Función que recibe dos parámetros <code>Int</code> y retorna un <code>Int</code>:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun sum(a: Int, b: Int): Int {
+  <span class="keyword">return</span> a + b
+}</code></pre>
+<div class="paragraph"><p>Función que usa una <code>expression</code> e infiere el tipo de retorno:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun sum(a: Int, b: Int) = a + b</code></pre>
+<aside class="notes"><div class="paragraph"><p>Una <code>expression</code>, en programación, es una combinación de constantes, variables o funciones, que es interpretada de acuerdo a las normas particulares de precedencia y asociación para un lenguaje de programación en particular. Como en matemáticas, la expresión es su valor evaluado, es decir, la expresión es una representación de ese valor.</p></div>
+<div class="paragraph"><p>Fuente: <a href="https://en.wikipedia.org/wiki/Expression_(computer_science" class="bare">https://en.wikipedia.org/wiki/Expression_(computer_science</a>)</p></div></aside></section>
+<section id="_definición_de_funciones_2"><h2>Definición de funciones</h2><div class="paragraph"><p>Función que no retorna ningún valor:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun printSum(a: Int, b: Int): Unit {
+  print(a + b)
+}</code></pre>
+<div class="paragraph"><p>El tipo de dato <code>Unit</code> puede ser inferido:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun printSum(a: Int, b: Int) {
+  print(a + b)
+}</code></pre>
+<aside class="notes"><div class="paragraph"><p>El tipo <code>Unit</code> se corresponde al tipo <code>void</code> en Java.</p></div>
+<div class="paragraph"><p>Fuente: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html" class="bare">https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html</a></p></div></aside></section>
+<section id="_expresiones"><h2>Expresiones</h2><div class="paragraph"><p>Esta expresión:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun max(a: Int, b: Int): Int {
+  <span class="keyword">if</span> (a &gt; b)
+    <span class="keyword">return</span> a
+  <span class="keyword">else</span>
+    <span class="keyword">return</span> b
+}</code></pre>
+<div class="paragraph"><p>Puede ser re escrita con una <code>if expression</code>:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun max(a: Int, b: Int) = <span class="keyword">if</span> (a &gt; b) a <span class="keyword">else</span> b</code></pre></section>
+<section id="_definición_de_variables"><h2>Definición de variables</h2><div class="paragraph"><p>Asignación única de una variable local:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">val a: Int = <span class="integer">1</span>
+val b = <span class="integer">1</span>   <span class="comment">// El tipo `Int` es inferido</span>
+val c: Int  <span class="comment">// El tipo es requerido cuando no hay inicialización</span>
+c = <span class="integer">1</span>       <span class="comment">// Única asignación</span></code></pre>
+<aside class="notes"><div class="paragraph"><p>La palabra <code>val</code> tiene comportamiento similar a la palabra <code>final</code> en Java, marcando variables para que sean asignadas una única vez.</p></div></aside></section>
+<section id="_definición_de_variables_2"><h2>Definición de variables</h2><div class="paragraph"><p>Variables mutables</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">var x = <span class="integer">5</span> <span class="comment">// El tipo `Int` es inferido</span>
+x += <span class="integer">1</span></code></pre></section>
+<section id="_string_templates"><h2>String templates</h2><pre class="CodeRay listingblock"><code class="java language-java">fun ejemplo(a: Any, b: Any) =
+  <span class="string"><span class="delimiter">&quot;</span><span class="content">Este es un texto con las variables ($a, $b).</span><span class="delimiter">&quot;</span></span></code></pre>
+<aside class="notes"><div class="paragraph"><p>La clase <code>Any</code> es la raíz de la jerarquía de clases de Kotlin. Todos los objetos en Kotlin tienen a <code>Any</code> como superclase. Similar a lo que en Java sería la clase <code>Object</code>.</p></div>
+<div class="paragraph"><p>Fuente: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html" class="bare">https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html</a></p></div></aside></section>
+<section id="_data_classes"><h2>Data classes</h2><div class="paragraph"><p>Un POJO con getters, setters, equals(), hashCode(), toString() y copy() lo definimos con:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">data <span class="type">class</span> <span class="class">Customer</span>(val name: <span class="predefined-type">String</span>,
+    val email: <span class="predefined-type">String</span>,
+    val company: <span class="predefined-type">String</span>)</code></pre></section>
+<section id="_named_default_arguments"><h2>Named &amp; Default arguments</h2><pre class="CodeRay listingblock"><code class="java language-java">fun bar(i: Int, s: <span class="predefined-type">String</span> = <span class="string"><span class="delimiter">&quot;</span><span class="delimiter">&quot;</span></span>, b: <span class="predefined-type">Boolean</span> = <span class="predefined-constant">true</span>) {}
+
+fun usage() {
+    <span class="comment">// named arguments:</span>
+    bar(<span class="integer">1</span>, b = <span class="predefined-constant">false</span>)
+}</code></pre></section>
+<section id="_null"><h2>Null</h2><div class="paragraph"><p>Una variable regular no puede guardar referencias nulas:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">var a: <span class="predefined-type">String</span> = <span class="string"><span class="delimiter">&quot;</span><span class="content">abc</span><span class="delimiter">&quot;</span></span>
+a = <span class="predefined-constant">null</span> <span class="comment">// Error de compilación</span>
+val l = a.length <span class="comment">// ok: variable 'a' nunca puede ser null</span></code></pre></section>
+<section id="_null_2"><h2>Null</h2><div class="paragraph"><p>Para permitir nulos, tenemos que declarar la variable como nullable usando <code>'?'</code></p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">var b: <span class="predefined-type">String</span>? = <span class="string"><span class="delimiter">&quot;</span><span class="content">abc</span><span class="delimiter">&quot;</span></span>
+a = <span class="predefined-constant">null</span> <span class="comment">// ok</span>
+val l = b.length <span class="comment">// error: variable 'b' puede ser null</span></code></pre></section>
+<section id="_null_3"><h2>Null</h2><div class="paragraph"><p>Validando referencias nulas:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">val l = <span class="keyword">if</span> (b != <span class="predefined-constant">null</span>) b.length <span class="keyword">else</span> -<span class="integer">1</span></code></pre>
+<div class="paragraph"><p>Invocaciones seguras con <code>'?'</code></p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">val l = b?.length <span class="comment">// retorna b.length si b no es nula y null de lo contrario.</span></code></pre></section>
+<section id="_operador_elvis"><h2>Operador Elvis <code>'?:'</code></h2><pre class="CodeRay listingblock"><code class="java language-java">val l = b?.length ?: -<span class="integer">1</span></code></pre>
+<div class="paragraph"><p>Si la expresión a la izquierda de ?: es no nula, el operador elvis la retorna, de lo contrario retorna la expresión de la derecha.</p></div></section>
+<section id="_extension_functions"><h2>Extension functions</h2><div class="paragraph"><p>Permiten extender la funcionalidad de una clase sin tener que heredar de la clase o usar el patron Decorator.</p></div></section>
+<section id="_extension_functions_2"><h2>Extension functions</h2><div class="paragraph"><p>Por ejemplo ordenar un <code>List</code> en Java:</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java"><span class="predefined-type">Collections</span>.sort( myList, myComparator );</code></pre>
+<div class="paragraph"><p>y en Kotlin :</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun <span class="predefined-type">List</span>.sort( myComparator ) {
+    <span class="predefined-type">Collections</span>.sort(<span class="local-variable">this</span>, myComparator )
+}
+myList.sort(myComparator)</code></pre></section>
+<section id="_collections"><h2>Collections</h2><div class="paragraph"><p>Kotlin provee versiones inmutables y mutables de las colecciones:</p></div>
+<div class="ulist"><ul><li><p><code>List&lt;T&gt;</code>/ <code>MutableList&lt;T&gt;</code></p></li><li><p><code>Set&lt;T&gt;</code> / <code>MutableSet&lt;T&gt;</code></p></li><li><p><code>Map&lt;T&gt;</code> / <code>MutableMap&lt;T&gt;</code></p></li></ul></div></section>
+<section id="_collections_2"><h2>Collections</h2><pre class="CodeRay listingblock"><code class="java language-java">val numbers: MutableList&lt;Int&gt; = mutableListOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>)
+val readOnlyView: <span class="predefined-type">List</span>&lt;Int&gt; = numbers
+println(numbers)      <span class="comment">// prints &quot;[1, 2, 3]&quot;</span>
+numbers.add(<span class="integer">4</span>)
+println(readOnlyView) <span class="comment">// prints &quot;[1, 2, 3, 4]&quot;</span>
+readOnlyView.clear()  <span class="comment">// -&gt; no compila</span>
+                      <span class="comment">// 'clear' no esta en la interface Immutable</span></code></pre></section>
+<section id="_collections_extensions"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val items = listOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span>)
+items.first() == <span class="integer">1</span>
+items.last() == <span class="integer">4</span>
+items.filter { it % <span class="integer">2</span> == <span class="integer">0</span> }   <span class="comment">// returns [2, 4]</span></code></pre></section>
+<section id="_collections_extensions_2"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val items = listOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span>)
+items.first() == <span class="integer">1</span>
+items.last() == <span class="integer">4</span>
+items.filter { it % <span class="integer">2</span> == <span class="integer">0</span> }   <span class="comment">// returns [2, 4]</span>
+<span class="comment">// En la línea anterior se usa una expressión lambda</span></code></pre>
+<aside class="notes"><div class="paragraph"><p>Una expresión lambda en el ámbito de la programación, una función anónima (función literal, expresión lambda) es una subrutina definida que no está enlazada a un identificador.</p></div>
+<div class="paragraph"><p>Las funciones lambda generalmente son:</p></div>
+<div class="olist arabic"><ol class="arabic"><li><p>​Argumentos que son pasados a otras funciones de orden superior</p></li><li><p>Usadas para construir el resultado de una función de orden superior que necesita retornar una función.</p></li></ol></div>
+<div class="paragraph"><p>Fuente: <a href="https://en.wikipedia.org/wiki/Anonymous_function" class="bare">https://en.wikipedia.org/wiki/Anonymous_function</a></p></div></aside></section>
+<section id="_collections_extensions_3"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val rwList = mutableListOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>)
+rwList.requireNoNulls()        <span class="comment">// returns [1, 2, 3]</span>
+<span class="keyword">if</span> (rwList.none { it &gt; <span class="integer">6</span> })
+   println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Ningún item mayor a 6</span><span class="delimiter">&quot;</span></span>)
+<span class="comment">// prints &quot;Ningún item mayor a 6&quot;</span>
+val item = rwList.firstOrNull()</code></pre></section>
+<section id="_funciones_de_orden_superior"><h2>Funciones de orden superior</h2><div class="paragraph"><p>Funciones que toman como parámetro otra función</p></div>
+<pre class="CodeRay listingblock"><code class="java language-java">fun &lt;T, R&gt; <span class="predefined-type">List</span>&lt;T&gt;.map(transform: (T) -&gt; R): <span class="predefined-type">List</span>&lt;R&gt; {
+  val result = arrayListOf&lt;R&gt;()
+  <span class="keyword">for</span> (item in <span class="local-variable">this</span>)
+    result.add(transform(item))
+  <span class="keyword">return</span> result
+}
+val doubled = ints.map { it -&gt; it * <span class="integer">2</span> } <span class="comment">// or : ints.map { it * 2 }</span>
+strings.filter { it.length == <span class="integer">5</span> }.map { it.toUpperCase() }</code></pre></section>
 <section id="_conclusiones"><h2>Conclusiones</h2><div class="ulist"><ul><li><p>Sintaxis moderna</p></li><li><p>Inferencia de tipos</p></li><li><p>Control de nulos</p></li><li><p>Sintaxis flexible y programación asincrónica</p></li><li><p>Compatible con Java</p></li></ul></div>
 <aside class="notes"><div class="paragraph"><p>Kotlin es un lenguaje Open Source moderno con muchas características como: soporte de inferencia de tipos, control de nulos en tiempo de compilación, programación asíncrona y sintaxis flexible. Además, es compatible con el ecosistema Java y podemos usarlo en backend de servidores y aplicaciones Android.</p></div>
 <div class="paragraph"><p>A esto podemos agregar que nos permite combinar programación orientada objetos y funcional con una sintaxis amigable y expresiva.</p></div>
 <div class="paragraph"><p>Al compararlo con Java vemos que una de las principales diferencias es lo conciso y expresivo de su código.</p></div></aside></section>
-<section><div class="ulist"><ul><li><p>Fuentes:</p><div class="ulist"><ul><li><p>Kotlin Programming Language – <a href="https://kotlinlang.org/" class="bare">https://kotlinlang.org/</a>, visitada el 28/05/2018</p></li><li><p>Kotlin in Action - Dmitry Jemerov, Svetlana Isakova - Manning Publications - 2017</p></li></ul></div></li><li><p><a href="http://bit.ly/ude-intro-kotlin">Presentación online en: http://bit.ly/ude-intro-kotlin</a></p></li><li><p><a href="https://github.com/earth001/talk-intro-kotlin">Demos online en: https://github.com/earth001/talk-intro-kotlin</a></p></li></ul></div>
-<aside class="notes"><div class="paragraph"><p>Para generar pdf incluir al final de la presentación lo siguiente: ?showNotes=separate-page&amp;print-pdf</p></div></aside></section></div></div><script src="reveal.js-3.7.0/lib/js/head.min.js"></script><script src="reveal.js-3.7.0/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
+<section><div class="ulist"><ul><li><p>Fuentes:</p><div class="ulist"><ul><li><p>Kotlin Programming Language – <a href="https://kotlinlang.org/" class="bare">https://kotlinlang.org/</a>, visitada el 29/05/2019</p></li><li><p>Kotlin in Action - Dmitry Jemerov, Svetlana Isakova - Manning Publications - 2017</p></li></ul></div></li></ul></div>
+<aside class="notes"><div class="ulist"><ul><li><p><a href="http://bit.ly/ude-intro-kotlin">Presentación online en: http://bit.ly/ude-intro-kotlin</a></p></li><li><p><a href="https://github.com/earth001/talk-intro-kotlin">Demos online en: https://github.com/earth001/talk-intro-kotlin</a></p></li></ul></div>
+<div class="paragraph"><p>Para generar pdf incluir al final de la presentación lo siguiente: ?showNotes=separate-page&amp;print-pdf</p></div></aside></section></div></div><script src="reveal.js-3.7.0/lib/js/head.min.js"></script><script src="reveal.js-3.7.0/js/reveal.js"></script><script>Array.prototype.slice.call(document.querySelectorAll('.slides section')).forEach(function(slide) {
   if (slide.getAttribute('data-background-color')) return;
   // user needs to explicitly say he wants CSS color to override otherwise we might break custom css or theme (#226)
   if (!(slide.classList.contains('canvas') || slide.classList.contains('background'))) return;

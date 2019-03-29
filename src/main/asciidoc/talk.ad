@@ -345,6 +345,294 @@ import java.util.*
 // ...
 ----
 
+== Definición de funciones
+
+Función que recibe dos parámetros `Int` y retorna un `Int`:
+
+[source,java]
+----
+fun sum(a: Int, b: Int): Int {
+  return a + b
+}
+----
+
+Función que usa una `expression` e infiere el tipo de retorno:
+
+[source,java]
+----
+fun sum(a: Int, b: Int) = a + b
+----
+
+[NOTE.speaker]
+====
+Una `expression`, en programación, es una combinación de constantes, variables o funciones, que es interpretada de acuerdo a las normas particulares de precedencia y asociación para un lenguaje de programación en particular. Como en matemáticas, la expresión es su valor evaluado, es decir, la expresión es una representación de ese valor.
+
+Fuente: https://en.wikipedia.org/wiki/Expression_(computer_science)
+====
+
+== Definición de funciones
+
+Función que no retorna ningún valor:
+
+[source,java]
+----
+fun printSum(a: Int, b: Int): Unit {
+  print(a + b)
+}
+----
+
+El tipo de dato `Unit` puede ser inferido:
+
+[source,java]
+----
+fun printSum(a: Int, b: Int) {
+  print(a + b)
+}
+----
+
+[NOTE.speaker]
+====
+El tipo `Unit` se corresponde al tipo `void` en Java.
+
+Fuente: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html
+====
+
+== Expresiones
+
+Esta expresión:
+
+[source,java]
+----
+fun max(a: Int, b: Int): Int {
+  if (a > b)
+    return a
+  else
+    return b
+}
+----
+
+Puede ser re escrita con una `if expression`:
+
+[source,java]
+----
+fun max(a: Int, b: Int) = if (a > b) a else b
+----
+
+== Definición de variables
+
+Asignación única de una variable local:
+
+[source,java]
+----
+val a: Int = 1
+val b = 1   // El tipo `Int` es inferido
+val c: Int  // El tipo es requerido cuando no hay inicialización
+c = 1       // Única asignación
+----
+
+[NOTE.speaker]
+====
+La palabra `val` tiene comportamiento similar a la palabra `final` en Java, marcando variables para que sean asignadas una única vez.
+====
+
+== Definición de variables
+
+Variables mutables
+
+[source,java]
+----
+var x = 5 // El tipo `Int` es inferido
+x += 1
+----
+
+== String templates
+
+[source,java]
+----
+fun ejemplo(a: Any, b: Any) =
+  "Este es un texto con las variables ($a, $b)."
+----
+
+[NOTE.speaker]
+====
+La clase `Any` es la raíz de la jerarquía de clases de Kotlin. Todos los objetos en Kotlin tienen a `Any` como superclase. Similar a lo que en Java sería la clase `Object`.
+
+Fuente: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html
+====
+
+== Data classes
+
+Un POJO con getters, setters, equals(), hashCode(), toString() y copy() lo definimos con:
+
+[source,java]
+----
+data class Customer(val name: String,
+    val email: String,
+    val company: String)
+----
+
+== Named & Default arguments
+
+[source,java]
+----
+fun bar(i: Int, s: String = "", b: Boolean = true) {}
+
+fun usage() {
+    // named arguments:
+    bar(1, b = false)
+}
+----
+
+== Null
+
+Una variable regular no puede guardar referencias nulas:
+
+[source,java]
+----
+var a: String = "abc"
+a = null // Error de compilación
+val l = a.length // ok: variable 'a' nunca puede ser null
+----
+
+== Null
+
+Para permitir nulos, tenemos que declarar la variable como nullable usando `'?'`
+
+[source,java]
+----
+var b: String? = "abc"
+a = null // ok
+val l = b.length // error: variable 'b' puede ser null
+----
+
+== Null
+Validando referencias nulas:
+
+[source,java]
+----
+val l = if (b != null) b.length else -1
+----
+
+Invocaciones seguras con `'?'`
+
+[source,java]
+----
+val l = b?.length // retorna b.length si b no es nula y null de lo contrario.
+----
+
+== Operador Elvis `'?:'`
+
+[source,java]
+----
+val l = b?.length ?: -1
+----
+Si la expresión a la izquierda de ?: es no nula, el operador elvis la retorna, de lo contrario retorna la expresión de la derecha.
+
+== Extension functions
+
+Permiten extender la funcionalidad de una clase sin tener que heredar de la clase o usar el patron Decorator.
+
+== Extension functions
+
+Por ejemplo ordenar un `List` en Java:
+
+[source,java]
+----
+Collections.sort( myList, myComparator );
+----
+
+y en Kotlin :
+
+[source,java]
+----
+fun List.sort( myComparator ) {
+    Collections.sort(this, myComparator )
+}
+myList.sort(myComparator)
+----
+
+== Collections
+
+Kotlin provee versiones inmutables y mutables de las colecciones:
+
+* `List<T>`/ `MutableList<T>`
+
+* `Set<T>` / `MutableSet<T>`
+
+* `Map<T>` / `MutableMap<T>`
+
+== Collections
+
+[source,java]
+----
+val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
+val readOnlyView: List<Int> = numbers
+println(numbers)      // prints "[1, 2, 3]"
+numbers.add(4)
+println(readOnlyView) // prints "[1, 2, 3, 4]"
+readOnlyView.clear()  // -> no compila
+                      // 'clear' no esta en la interface Immutable
+----
+
+== Collections extensions
+[source,java]
+----
+val items = listOf(1, 2, 3, 4)
+items.first() == 1
+items.last() == 4
+items.filter { it % 2 == 0 }   // returns [2, 4]
+----
+
+== Collections extensions
+
+[source,java]
+----
+val items = listOf(1, 2, 3, 4)
+items.first() == 1
+items.last() == 4
+items.filter { it % 2 == 0 }   // returns [2, 4]
+// En la línea anterior se usa una expressión lambda
+----
+
+[NOTE.speaker]
+====
+Una expresión lambda en el ámbito de la programación, una función anónima (función literal, expresión lambda) es una subrutina definida que no está enlazada a un identificador.
+
+Las funciones lambda generalmente son:
+
+1. ​Argumentos que son pasados a otras funciones de orden superior
+2. Usadas para construir el resultado de una función de orden superior que necesita retornar una función.
+
+Fuente: https://en.wikipedia.org/wiki/Anonymous_function
+====
+
+== Collections extensions
+
+[source,java]
+----
+val rwList = mutableListOf(1, 2, 3)
+rwList.requireNoNulls()        // returns [1, 2, 3]
+if (rwList.none { it > 6 })
+   println("Ningún item mayor a 6")
+// prints "Ningún item mayor a 6"
+val item = rwList.firstOrNull()
+----
+
+== Funciones de orden superior
+Funciones que toman como parámetro otra función
+
+[source,java]
+----
+fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
+  val result = arrayListOf<R>()
+  for (item in this)
+    result.add(transform(item))
+  return result
+}
+val doubled = ints.map { it -> it * 2 } // or : ints.map { it * 2 }
+strings.filter { it.length == 5 }.map { it.toUpperCase() }
+----
+
 == Conclusiones
 * Sintaxis moderna
 * Inferencia de tipos

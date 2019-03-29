@@ -1,13 +1,14 @@
 == !
 
 * Fuentes:
-** Kotlin Programming Language – https://kotlinlang.org/, visitada el 28/05/2018
-**  Kotlin in Action - Dmitry Jemerov, Svetlana Isakova - Manning Publications - 2017
-* link:{slide-link}[Presentación online en: {slide-link}]
-* link:{demo-link}[Demos online en: {demo-link}]
+** Kotlin Programming Language – https://kotlinlang.org/, visitada el 29/05/2019
+** Kotlin in Action - Dmitry Jemerov, Svetlana Isakova - Manning Publications - 2017
 
 [NOTE.speaker]
 ====
+
+* link:{slide-link}[Presentación online en: {slide-link}]
+* link:{demo-link}[Demos online en: {demo-link}]
 
 Para generar pdf incluir al final de la presentación lo siguiente: ?showNotes=separate-page&print-pdf
 ====
