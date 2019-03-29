@@ -5,3 +5,9 @@
 **  Kotlin in Action - Dmitry Jemerov, Svetlana Isakova - Manning Publications - 2017
 * link:{slide-link}[Presentación online en: {slide-link}]
 * link:{demo-link}[Demos online en: {demo-link}]
+
+[NOTE.speaker]
+====
+
+Para generar pdf incluir al final de la presentación lo siguiente: ?showNotes=separate-page&print-pdf
+====

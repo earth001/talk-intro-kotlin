@@ -3,7 +3,7 @@ package com.proitc.kotlin
 data class EstudianteKotlin(val nombre: String,
                             val puntaje: Int? = null)
 
-fun main(args: Array<String>) {
+fun main() {
   //val estudiantes2:ArrayList<EstudianteKotlin>
   val estudiantes = listOf(EstudianteKotlin("Julia"),
       EstudianteKotlin("Marco", puntaje = 12),
