@@ -331,6 +331,20 @@ class EstudianteJava {
 ====
 
 
+== Sintaxis
+
+
+== Definición de paquetes
+
+[source,java]
+----
+package my.demo
+
+import java.util.*
+
+// ...
+----
+
 == Conclusiones
 * Sintaxis moderna
 * Inferencia de tipos
