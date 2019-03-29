@@ -104,7 +104,7 @@ Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicion
 
 == !
 
-[source,kotlin,linenums]
+[source,java,linenums]
 ----
 package com.proitc.kotlin
 
@@ -149,7 +149,7 @@ L13-14: Por último, imprimimos el resultado usando plantillas de cadenas de tex
 ====
 
 == !
-[source,java]
+[source,java,linenums]
 ----
 package com.proitc.java;
 
@@ -177,7 +177,7 @@ class MainJava {
 ----
 
 == !
-[source,java]
+[source,java,linenums]
 ----
 package com.proitc.java;
 

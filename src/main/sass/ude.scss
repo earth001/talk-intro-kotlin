@@ -130,8 +130,7 @@ $selectionColor: $color-primary-0;
 
 .reveal pre code {
   font-family: "Roboto Mono", monospace;
-  //font-size: .8 * $mainFontSize;
-  font-size: 24px;
+  font-size: .8 * $mainFontSize;
   line-height: 1.3;
   max-height: 480px;
 }

@@ -165,7 +165,7 @@
               <templateDir>
                 ${project.build.directory}/asciidoctor-reveal.js-${asciidoctor-revealjs.version}/templates
               </templateDir>
-              <sourceHighlighter>highlightjs</sourceHighlighter>
+              <sourceHighlighter>coderay</sourceHighlighter>
               <attributes>
                 <!--
                     As we are downloading reveal.js in runtime, it sits in a nonstandard folder `reveal.js-${revealjs.version}`
@@ -181,7 +181,6 @@
                 <revealjs_height>720</revealjs_height>
                 <revealjs_margin>0</revealjs_margin>
                 <revealjs_slideNumber>true</revealjs_slideNumber>
-                <highlightjs-theme>theme/highlightjs-theme/github.css</highlightjs-theme>
               </attributes>
             </configuration>
           </execution>
