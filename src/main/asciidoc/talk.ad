@@ -111,7 +111,7 @@ package com.proitc.kotlin
 data class EstudianteKotlin(val nombre: String,
                             val puntaje: Int? = null)
 
-fun main(args: Array<String>) {
+fun main() {
   val estudiantes = listOf(EstudianteKotlin("Julia"),
       EstudianteKotlin("Marco", puntaje = 12),
       EstudianteKotlin(puntaje = 11, nombre = "Pedro"))
@@ -127,25 +127,25 @@ fun main(args: Array<String>) {
 ====
 L1: Tenemos la declaración del paquete, y aunque parece similar a Java podemos observar que no hay “;” al final, esto es porque en Kotlin el uso de “;” es opcional.
 
-L3-L4: En este bloque tenemos la declaración de una data class1, esta es un tipo de clase que podemos usar para almacenar datos. La podemos comparar con un Java Bean2 o un DTO3 donde el compilador genera por nosotros el constructor primario, métodos hashCode, equals, toString, copy, entre otros.
-Otro aspecto importante que vemos es la declaración de propiedades con la palabra reservada “val”, con ella declaramos variables de solo lectura, que pueden ser inicializadas una sola vez, un efecto similar a lo que se lograría con el uso de la palabra reservada “final” en java, haciéndolas inmutables.
+L3-L4: En este bloque tenemos la declaración de una `data class`, esta es un tipo de clase que podemos usar para almacenar datos. La podemos comparar con un Java Bean o un DTO donde el compilador genera por nosotros el constructor primario, métodos `hashCode`, `equals`, `toString`, `copy`, entre otros.
+Otro aspecto importante que vemos es la declaración de propiedades con la palabra reservada `val`, con ella declaramos variables de solo lectura, que pueden ser inicializadas una sola vez, un efecto similar a lo que se lograría con el uso de la palabra reservada `final` en java, haciéndolas inmutables.
 Considerar también que el tipo de la variable se define luego de su declaración, esto porque se le da prioridad al nombre de las variables con el objetivo de mejorar la legibilidad.
 
-Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final. Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación. En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor null la aplicación no compilará.
+Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final. Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación. En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor `null` la aplicación no compilará.
 
-L6: Aquí hacemos la declaración de la función main. Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase.
+L6: Aquí hacemos la declaración de la función main. Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase y los argumentos de la función son opcionales.
 
-L7-L9: En estás dos líneas se está creando una lista de EstudianteKotlin. Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables. En este caso listOf crea una lista inmutable. Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes. Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable “estudiantes” es una List inmutable con elementos de tipo EstudianteKotlin; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.
+L7-L9: En estás dos líneas se está creando una lista de `EstudianteKotlin`. Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables. En este caso listOf crea una lista inmutable. Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes. Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable `estudiantes` es una `List` inmutable con elementos de tipo `EstudianteKotlin`; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.
 
 L8: Inicializamos un objeto usando parámetros nombrados (named parameters), esto nos permite llamar una función o constructor indicando los valores que toman los argumentos de manera explícita, la intención de esto es mejorar la legibilidad en funciones que tienen muchos parámetros. Incluso permite que se pasen los argumentos en distinto orden al que han sido declarados en la firma del método.
 
-L11: Aquí usamos la función maxBy de la librería estándar de colecciones. El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos. Considerar que la función es enviada como una expresión lambda (Lambda Expression4), que no es otra cosa que una función anónima que puede ser usada como valor. Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.
+L11: Aquí usamos la función `maxBy` de la librería estándar de colecciones. El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos. Considerar que la función es enviada como una expresión lambda (Lambda Expression), que no es otra cosa que una función anónima que puede ser usada como valor. Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.
 
-El parámetro it de nuestro ejemplo es el nombre por defecto que toma el parámetro de una expresión lambda que recibe un sólo parámetro, en este caso un EstudianteKotlin.
+El parámetro `it` de nuestro ejemplo es el nombre por defecto que toma el parámetro de una expresión lambda que recibe un sólo parámetro, en este caso un `EstudianteKotlin`.
 
 El operador Elvis :? (sí, se llama así por el cantante) que aparece en la expresión evalúa la edad de los estudiantes y en caso de que sea null retorna 0. El objetivo de este operador es hacer un control de nulos de manera más concisa.
 
-L13-14: Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto. Al usar una data class en nuestro ejemplo se llama de manera implícita al método toString() obteniendo la salida que vimos anteriormente. Otro punto que podemos ver es que Kotlin literales de String de varias líneas.
+L13-14: Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto. Al usar una data class en nuestro ejemplo se llama de manera implícita al método `toString()` obteniendo la salida que vimos anteriormente. Otro punto que podemos ver es que Kotlin literales de String de varias líneas.
 ====
 
 == !
