@@ -518,17 +518,13 @@ readOnlyView.clear()  <span class="comment">// -&gt; no compila</span>
 <section id="_collections_extensions"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val items = listOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span>)
 items.first() == <span class="integer">1</span>
 items.last() == <span class="integer">4</span>
-items.filter { it % <span class="integer">2</span> == <span class="integer">0</span> }   <span class="comment">// returns [2, 4]</span></code></pre></section>
-<section id="_collections_extensions_2"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val items = listOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span>)
-items.first() == <span class="integer">1</span>
-items.last() == <span class="integer">4</span>
 items.filter { it % <span class="integer">2</span> == <span class="integer">0</span> }   <span class="comment">// returns [2, 4]</span>
 <span class="comment">// En la línea anterior se usa una expressión lambda</span></code></pre>
 <aside class="notes"><div class="paragraph"><p>Una expresión lambda en el ámbito de la programación, una función anónima (función literal, expresión lambda) es una subrutina definida que no está enlazada a un identificador.</p></div>
 <div class="paragraph"><p>Las funciones lambda generalmente son:</p></div>
 <div class="olist arabic"><ol class="arabic"><li><p>​Argumentos que son pasados a otras funciones de orden superior</p></li><li><p>Usadas para construir el resultado de una función de orden superior que necesita retornar una función.</p></li></ol></div>
 <div class="paragraph"><p>Fuente: <a href="https://en.wikipedia.org/wiki/Anonymous_function" class="bare">https://en.wikipedia.org/wiki/Anonymous_function</a></p></div></aside></section>
-<section id="_collections_extensions_3"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val rwList = mutableListOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>)
+<section id="_collections_extensions_2"><h2>Collections extensions</h2><pre class="CodeRay listingblock"><code class="java language-java">val rwList = mutableListOf(<span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>)
 rwList.requireNoNulls()        <span class="comment">// returns [1, 2, 3]</span>
 <span class="keyword">if</span> (rwList.none { it &gt; <span class="integer">6</span> })
    println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Ningún item mayor a 6</span><span class="delimiter">&quot;</span></span>)

@@ -575,15 +575,6 @@ readOnlyView.clear()  // -> no compila
 ----
 
 == Collections extensions
-[source,java]
-----
-val items = listOf(1, 2, 3, 4)
-items.first() == 1
-items.last() == 4
-items.filter { it % 2 == 0 }   // returns [2, 4]
-----
-
-== Collections extensions
 
 [source,java]
 ----
