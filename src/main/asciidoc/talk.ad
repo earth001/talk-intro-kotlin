@@ -104,7 +104,7 @@ Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicion
 
 == !
 
-[source,java,linenums]
+[source,kotlin,numbered]
 ----
 package com.proitc.kotlin
 
@@ -177,7 +177,7 @@ class MainJava {
 ----
 
 == !
-[source,java,linenums]
+[source,kotlin,linenums]
 ----
 package com.proitc.java;
 
@@ -241,7 +241,7 @@ class EstudianteJava {
 Código fuente completo:
 
 *MainJava.java*
-[source,java]
+[source,kotlin]
 ----
 package com.proitc.java;
 
@@ -269,7 +269,7 @@ class MainJava {
 ----
 
 *EstudianteJava.java*
-[source,java]
+[source,kotlin]
 ----
 package com.proitc.java;
 
@@ -336,7 +336,7 @@ class EstudianteJava {
 
 == Definición de paquetes
 
-[source,java]
+[source,kotlin]
 ----
 package my.demo
 
@@ -349,7 +349,7 @@ import java.util.*
 
 Función que recibe dos parámetros `Int` y retorna un `Int`:
 
-[source,java]
+[source,kotlin]
 ----
 fun sum(a: Int, b: Int): Int {
   return a + b
@@ -358,7 +358,7 @@ fun sum(a: Int, b: Int): Int {
 
 Función que usa una `expression` e infiere el tipo de retorno:
 
-[source,java]
+[source,kotlin]
 ----
 fun sum(a: Int, b: Int) = a + b
 ----
@@ -374,7 +374,7 @@ Fuente: https://en.wikipedia.org/wiki/Expression_(computer_science)
 
 Función que no retorna ningún valor:
 
-[source,java]
+[source,kotlin]
 ----
 fun printSum(a: Int, b: Int): Unit {
   print(a + b)
@@ -383,7 +383,7 @@ fun printSum(a: Int, b: Int): Unit {
 
 El tipo de dato `Unit` puede ser inferido:
 
-[source,java]
+[source,kotlin]
 ----
 fun printSum(a: Int, b: Int) {
   print(a + b)
@@ -401,7 +401,7 @@ Fuente: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html
 
 Esta expresión:
 
-[source,java]
+[source,kotlin]
 ----
 fun max(a: Int, b: Int): Int {
   if (a > b)
@@ -413,7 +413,7 @@ fun max(a: Int, b: Int): Int {
 
 Puede ser re escrita con una `if expression`:
 
-[source,java]
+[source,kotlin]
 ----
 fun max(a: Int, b: Int) = if (a > b) a else b
 ----
@@ -422,7 +422,7 @@ fun max(a: Int, b: Int) = if (a > b) a else b
 
 Asignación única de una variable local:
 
-[source,java]
+[source,kotlin]
 ----
 val a: Int = 1
 val b = 1   // El tipo `Int` es inferido
@@ -439,7 +439,7 @@ La palabra `val` tiene comportamiento similar a la palabra `final` en Java, marc
 
 Variables mutables
 
-[source,java]
+[source,kotlin]
 ----
 var x = 5 // El tipo `Int` es inferido
 x += 1
@@ -447,7 +447,7 @@ x += 1
 
 == String templates
 
-[source,java]
+[source,kotlin]
 ----
 fun ejemplo(a: Any, b: Any) =
   "Este es un texto con las variables ($a, $b)."
@@ -464,7 +464,7 @@ Fuente: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html
 
 Un POJO con getters, setters, equals(), hashCode(), toString() y copy() lo definimos con:
 
-[source,java]
+[source,kotlin]
 ----
 data class Customer(val name: String,
     val email: String,
@@ -473,7 +473,7 @@ data class Customer(val name: String,
 
 == Named & Default arguments
 
-[source,java]
+[source,kotlin]
 ----
 fun bar(i: Int, s: String = "", b: Boolean = true) {}
 
@@ -487,7 +487,7 @@ fun usage() {
 
 Una variable regular no puede guardar referencias nulas:
 
-[source,java]
+[source,kotlin]
 ----
 var a: String = "abc"
 a = null // Error de compilación
@@ -498,7 +498,7 @@ val l = a.length // ok: variable 'a' nunca puede ser null
 
 Para permitir nulos, tenemos que declarar la variable como nullable usando `'?'`
 
-[source,java]
+[source,kotlin]
 ----
 var b: String? = "abc"
 a = null // ok
@@ -508,21 +508,21 @@ val l = b.length // error: variable 'b' puede ser null
 == Null
 Validando referencias nulas:
 
-[source,java]
+[source,kotlin]
 ----
 val l = if (b != null) b.length else -1
 ----
 
 Invocaciones seguras con `'?'`
 
-[source,java]
+[source,kotlin]
 ----
 val l = b?.length // retorna b.length si b no es nula y null de lo contrario.
 ----
 
 == Operador Elvis `'?:'`
 
-[source,java]
+[source,kotlin]
 ----
 val l = b?.length ?: -1
 ----
@@ -536,14 +536,14 @@ Permiten extender la funcionalidad de una clase sin tener que heredar de la clas
 
 Por ejemplo ordenar un `List` en Java:
 
-[source,java]
+[source,kotlin]
 ----
 Collections.sort( myList, myComparator );
 ----
 
 y en Kotlin :
 
-[source,java]
+[source,kotlin]
 ----
 fun List.sort( myComparator ) {
     Collections.sort(this, myComparator )
@@ -563,7 +563,7 @@ Kotlin provee versiones inmutables y mutables de las colecciones:
 
 == Collections
 
-[source,java]
+[source,kotlin]
 ----
 val numbers: MutableList<Int> = mutableListOf(1, 2, 3)
 val readOnlyView: List<Int> = numbers
@@ -576,7 +576,7 @@ readOnlyView.clear()  // -> no compila
 
 == Collections extensions
 
-[source,java]
+[source,kotlin]
 ----
 val items = listOf(1, 2, 3, 4)
 items.first() == 1
@@ -599,7 +599,7 @@ Fuente: https://en.wikipedia.org/wiki/Anonymous_function
 
 == Collections extensions
 
-[source,java]
+[source,kotlin]
 ----
 val rwList = mutableListOf(1, 2, 3)
 rwList.requireNoNulls()        // returns [1, 2, 3]
@@ -612,7 +612,7 @@ val item = rwList.firstOrNull()
 == Funciones de orden superior
 Funciones que toman como parámetro otra función
 
-[source,java]
+[source,kotlin]
 ----
 fun <T, R> List<T>.map(transform: (T) -> R): List<R> {
   val result = arrayListOf<R>()
