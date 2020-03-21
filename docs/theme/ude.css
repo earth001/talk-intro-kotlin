@@ -381,7 +381,7 @@ body {
 
 .reveal pre code {
   font-family: "Roboto Mono", monospace;
-  font-size: 38.4px;
+  font-size: 28.8px;
   line-height: 1.3;
   max-height: 480px;
 }
@@ -479,6 +479,10 @@ section[data-background-size] .footer span {
 
   .reveal p {
     text-shadow: none;
+  }
+
+  .reveal pre code {
+    font-size: 14.4px;
   }
 }
 

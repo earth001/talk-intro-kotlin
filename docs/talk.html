@@ -52,33 +52,27 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
 	Tiempo de compilación: Ha sido optimizado para ser eficiente en compilación incremental.</p></div>
 <div class="paragraph"><p>Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicionalmente los IDEs ofrecen herramientas para convertir código Java a Kotlin. JetBrains también ofrece guías y tutoriales para los que deseen aprender.</p></div></aside></section>
 <section id="_sintaxis"><h2>Sintaxis</h2></section>
-<section><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package com.proitc.kotlin
+<section><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package com.proitc.kotlin <i class="conum" data-value="1"></i><b>(1)</b>
 
 data class EstudianteKotlin(val nombre: String,
-                            val puntaje: Int? = null)
+                            val puntaje: Int? = null) <i class="conum" data-value="2"></i><b>(2)</b>
 
-fun main() {
-  val estudiantes = listOf(EstudianteKotlin("Julia"),
-      EstudianteKotlin("Marco", puntaje = 12),
+fun main() { <i class="conum" data-value="3"></i><b>(3)</b>
+  val estudiantes = listOf(EstudianteKotlin("Julia"), <i class="conum" data-value="4"></i><b>(4)</b>
+      EstudianteKotlin("Marco", puntaje = 12), <i class="conum" data-value="5"></i><b>(5)</b>
       EstudianteKotlin(puntaje = 11, nombre = "Pedro"))
 
-  val mayorPuntaje = estudiantes.maxBy { it.puntaje ?: 0 }
+  val mayorPuntaje = estudiantes.maxBy { it.puntaje ?: 0 } <i class="conum" data-value="6"></i><b>(6)</b>
 
   println("""El mayor puntaje en Kotlin es de:
-    $mayorPuntaje""")
+    $mayorPuntaje""") <i class="conum" data-value="7"></i><b>(7)</b>
 }</code></pre>
-<aside class="notes"><div class="paragraph"><p>L1: Tenemos la declaración del paquete, y aunque parece similar a Java podemos observar que no hay “;” al final, esto es porque en Kotlin el uso de “;” es opcional.</p></div>
-<div class="paragraph"><p>L3-L4: En este bloque tenemos la declaración de una <code>data class</code>, esta es un tipo de clase que podemos usar para almacenar datos. La podemos comparar con un Java Bean o un DTO donde el compilador genera por nosotros el constructor primario, métodos <code>hashCode</code>, <code>equals</code>, <code>toString</code>, <code>copy</code>, entre otros.
+<aside class="notes"><div class="colist arabic"><table><tr><td><i class="conum" data-value="1"></i><b>1</b></td><td>Tenemos la declaración del paquete, y aunque parece similar a Java podemos observar que no hay “;” al final, esto es porque en Kotlin el uso de “;” es opcional.</td></tr><tr><td><i class="conum" data-value="2"></i><b>2</b></td><td>En este bloque tenemos la declaración de una <code>data class</code>, esta es un tipo de clase que podemos usar para almacenar datos. La podemos comparar con un Java Bean o un DTO donde el compilador genera por nosotros el constructor primario, métodos <code>hashCode</code>, <code>equals</code>, <code>toString</code>, <code>copy</code>, entre otros.
 Otro aspecto importante que vemos es la declaración de propiedades con la palabra reservada <code>val</code>, con ella declaramos variables de solo lectura, que pueden ser inicializadas una sola vez, un efecto similar a lo que se lograría con el uso de la palabra reservada <code>final</code> en java, haciéndolas inmutables.
-Considerar también que el tipo de la variable se define luego de su declaración, esto porque se le da prioridad al nombre de las variables con el objetivo de mejorar la legibilidad.</p></div>
-<div class="paragraph"><p>Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final. Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación. En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor <code>null</code> la aplicación no compilará.</p></div>
-<div class="paragraph"><p>L6: Aquí hacemos la declaración de la función main. Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase y los argumentos de la función son opcionales.</p></div>
-<div class="paragraph"><p>L7-L9: En estás dos líneas se está creando una lista de <code>EstudianteKotlin</code>. Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables. En este caso listOf crea una lista inmutable. Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes. Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable <code>estudiantes</code> es una <code>List</code> inmutable con elementos de tipo <code>EstudianteKotlin</code>; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.</p></div>
-<div class="paragraph"><p>L8: Inicializamos un objeto usando parámetros nombrados (named parameters), esto nos permite llamar una función o constructor indicando los valores que toman los argumentos de manera explícita, la intención de esto es mejorar la legibilidad en funciones que tienen muchos parámetros. Incluso permite que se pasen los argumentos en distinto orden al que han sido declarados en la firma del método.</p></div>
-<div class="paragraph"><p>L11: Aquí usamos la función <code>maxBy</code> de la librería estándar de colecciones. El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos. Considerar que la función es enviada como una expresión lambda (Lambda Expression), que no es otra cosa que una función anónima que puede ser usada como valor. Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.</p></div>
-<div class="paragraph"><p>El parámetro <code>it</code> de nuestro ejemplo es el nombre por defecto que toma el parámetro de una expresión lambda que recibe un sólo parámetro, en este caso un <code>EstudianteKotlin</code>.</p></div>
-<div class="paragraph"><p>El operador Elvis :? (sí, se llama así por el cantante) que aparece en la expresión evalúa la edad de los estudiantes y en caso de que sea null retorna 0. El objetivo de este operador es hacer un control de nulos de manera más concisa.</p></div>
-<div class="paragraph"><p>L13-14: Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto. Al usar una data class en nuestro ejemplo se llama de manera implícita al método <code>toString()</code> obteniendo la salida que vimos anteriormente. Otro punto que podemos ver es que Kotlin literales de String de varias líneas.</p></div></aside></section>
+Considerar también que el tipo de la variable se define luego de su declaración, esto porque se le da prioridad al nombre de las variables con el objetivo de mejorar la legibilidad.
+Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final. Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación. En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor <code>null</code> la aplicación no compilará.</td></tr><tr><td><i class="conum" data-value="3"></i><b>3</b></td><td>Aquí hacemos la declaración de la función main. Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase y los argumentos de la función son opcionales.</td></tr><tr><td><i class="conum" data-value="4"></i><b>4</b></td><td>En estás dos líneas se está creando una lista de <code>EstudianteKotlin</code>. Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables. En este caso listOf crea una lista inmutable. Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes. Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable <code>estudiantes</code> es una <code>List</code> inmutable con elementos de tipo <code>EstudianteKotlin</code>; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.</td></tr><tr><td><i class="conum" data-value="5"></i><b>5</b></td><td>Inicializamos un objeto usando parámetros nombrados (named parameters), esto nos permite llamar una función o constructor indicando los valores que toman los argumentos de manera explícita, la intención de esto es mejorar la legibilidad en funciones que tienen muchos parámetros. Incluso permite que se pasen los argumentos en distinto orden al que han sido declarados en la firma del método.</td></tr><tr><td><i class="conum" data-value="6"></i><b>6</b></td><td>Aquí usamos la función <code>maxBy</code> de la librería estándar de colecciones. El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos. Considerar que la función es enviada como una expresión lambda (Lambda Expression), que no es otra cosa que una función anónima que puede ser usada como valor. Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.
+El parámetro <code>it</code> de nuestro ejemplo es el nombre por defecto que toma el parámetro de una expresión lambda que recibe un sólo parámetro, en este caso un <code>EstudianteKotlin</code>.
+El operador Elvis :? (sí, se llama así por el cantante) que aparece en la expresión evalúa la edad de los estudiantes y en caso de que sea null retorna 0. El objetivo de este operador es hacer un control de nulos de manera más concisa.</td></tr><tr><td><i class="conum" data-value="7"></i><b>7</b></td><td>Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto. Al usar una data class en nuestro ejemplo se llama de manera implícita al método <code>toString()</code> obteniendo la salida que vimos anteriormente. Otro punto que podemos ver es que Kotlin literales de String de varias líneas.</td></tr></table></div></aside></section>
 <section><pre class="highlight listingblock"><code data-noescape="" class="java language-java">package com.proitc.java;
 
 import static java.util.Comparator.comparingInt;
@@ -102,7 +96,7 @@ class MainJava {
           mayorPuntaje.orElse(null)));
   }
 }</code></pre></section>
-<section><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package com.proitc.java;
+<section><pre class="highlight listingblock"><code data-noescape="" class="java language-java">package com.proitc.java;
 
 import java.util.Objects;
 
@@ -120,7 +114,7 @@ class EstudianteJava {
   EstudianteJava(String nombre) {
     this(nombre, null);
   }
-
+  // Getters, Setters, Equals y Hashcode
   public String getNombre() {
     return nombre;
   }
@@ -155,89 +149,7 @@ class EstudianteJava {
         '}';
   }
 
-
-}</code></pre>
-<aside class="notes"><div class="paragraph"><p>Código fuente completo:</p></div>
-<div class="paragraph"><p><strong>MainJava.java</strong></p></div>
-<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package com.proitc.java;
-
-import static java.util.Comparator.comparingInt;
-
-import java.util.List;
-
-class MainJava {
-
-  public static void main(String[] args) {
-    final var estudiantes = List
-        .of(new EstudianteJava("Julio"), new EstudianteJava("María", 12));
-    final var mayorPuntaje = estudiantes.stream().max(comparingInt(es -&gt; {
-      if (es.getPuntaje() == null) {
-        return 0;
-      } else {
-        return es.getPuntaje();
-      }
-    }));
-    System.out
-        .println(String.format("El mayor puntaje en Java es de: %s",
-          mayorPuntaje.orElse(null)));
-  }
-}</code></pre>
-<div class="paragraph"><p><strong>EstudianteJava.java</strong></p></div>
-<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package com.proitc.java;
-
-import java.util.Objects;
-
-class EstudianteJava {
-
-  private final String nombre;
-  private final Integer puntaje;
-
-  EstudianteJava(String nombre, Integer puntaje) {
-    Objects.requireNonNull(nombre);
-    this.nombre = nombre;
-    this.puntaje = puntaje;
-  }
-
-  EstudianteJava(String nombre) {
-    this(nombre, null);
-  }
-
-  public String getNombre() {
-    return nombre;
-  }
-
-  public Integer getPuntaje() {
-    return puntaje;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    EstudianteJava person = (EstudianteJava) o;
-    return Objects.equals(getNombre(), person.getNombre()) &amp;&amp;
-        Objects.equals(getPuntaje(), person.getPuntaje());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getNombre(), getPuntaje());
-  }
-
-  @Override
-  public String toString() {
-    return "EstudianteJava{" +
-        "nombre='" + getNombre() + '\'' +
-        ", puntaje=" + getPuntaje() +
-        '}';
-  }
-
-
-}</code></pre></aside></section>
+}</code></pre></section>
 <section id="_sintaxis_2"><h2>Sintaxis</h2></section>
 <section id="_definición_de_paquetes"><h2>Definición de paquetes</h2><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">package my.demo
 
@@ -284,16 +196,51 @@ x += 1</code></pre></section>
   "Este es un texto con las variables ($a, $b)."</code></pre>
 <aside class="notes"><div class="paragraph"><p>La clase <code>Any</code> es la raíz de la jerarquía de clases de Kotlin. Todos los objetos en Kotlin tienen a <code>Any</code> como superclase. Similar a lo que en Java sería la clase <code>Object</code>.</p></div>
 <div class="paragraph"><p>Fuente: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html" class="bare">https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html</a></p></div></aside></section>
+<section id="_classes"><h2>Classes</h2><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">class ItemManager(val categoryId: String, val dbConnection: String) {
+  var email = ""
+  // ...
+}</code></pre>
+<aside class="notes"><div class="paragraph"><p>La declaración de clases en Kotlin es bastante concisa. Su sintaxis nos permite declarar los atributos y el constructor en su definición. Este constructor, llamado también constructor primario recibe los atributos y los inicializa. Si se requieren constructores adicionales se usa la palabra <code>constructor</code>.</p></div>
+<div class="paragraph"><p>A continuación se muestra un segundo constructor donde se asigna la propiedad email.</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">constructor(categoryId: String, dbConnection: String, email: String)
+  : this(categoryId, dbConnection) {
+  this.email = email
+}</code></pre>
+<div class="paragraph"><p>Considere que en este caso, este constructor invoca al constructor primario con la palabra reservada <code>this</code>.</p></div></aside></section>
 <section id="_data_classes"><h2>Data classes</h2><div class="paragraph"><p>Un POJO con getters, setters, equals(), hashCode(), toString() y copy() lo definimos con:</p></div>
 <pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">data class Customer(val name: String,
     val email: String,
     val company: String)</code></pre></section>
+<section id="_herencia"><h2>Herencia</h2><div class="paragraph"><p>Por defecto las clases en Kotlin están cerradas para extensión, el equivalente a clases <code>final</code> en java. Para permitir la extensión se usa la palabra reservada <code>open</code>.</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">open class Item(val id: String, val name: String = "unknown_name") {
+  open fun getIdOfItem(): String {
+    return id
+  }
+}</code></pre></section>
+<section id="_herencia_2"><h2>Herencia</h2><div class="paragraph"><p>Veamos ahora un ejemplo de extensión:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">class ItemWithCategory(id: String, name: String, val categoryId: String)
+  : Item(id, name) {
+
+  override fun getIdOfItem(): String {
+    return id + name
+  }
+}</code></pre></section>
 <section id="_named_default_arguments"><h2>Named &amp; Default arguments</h2><pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">fun bar(i: Int, s: String = "", b: Boolean = true) {}
 
 fun usage() {
     // named arguments:
     bar(1, b = false)
 }</code></pre></section>
+<section id="_estructuras_de_repetición"><h2>Estructuras de repetición</h2><div class="paragraph"><p>Para recorrer colecciones Kotlin ofrece la sentencia <code>for..in</code>:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">val numbers = arrayOf("first", "second", "third", "fourth")
+for (n in numbers) {
+  println(n)
+}</code></pre></section>
+<section id="_estructuras_de_repetición_2"><h2>Estructuras de repetición</h2><div class="paragraph"><p>Para iterar sobre un rango de números se puede usar el constructor de rangos:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">for (i in 2..9 step 2) {
+    println(i)
+}</code></pre>
+<div class="paragraph"><p>Este constructor es inclusivo (lado inferior y superior). El parámetro <code>step</code> es opcional y en este caso indica el incremento.</p></div></section>
 <section id="_null"><h2>Null</h2><div class="paragraph"><p>Una variable regular no puede guardar referencias nulas:</p></div>
 <pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">var a: String = "abc"
 a = null // Error de compilación
