@@ -2,7 +2,7 @@ package com.proitc.java;
 
 import java.util.Objects;
 
-class EstudianteJava {
+public class EstudianteJava {
 
   private final String nombre;
   private final Integer puntaje;

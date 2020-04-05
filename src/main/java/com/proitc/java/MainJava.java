@@ -4,7 +4,7 @@ import static java.util.Comparator.comparingInt;
 
 import java.util.List;
 
-class MainJava {
+public class MainJava {
 
   public static void main(String[] args) {
     final var estudiantes = List
