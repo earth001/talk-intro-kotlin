@@ -231,6 +231,35 @@ fun usage() {
     // named arguments:
     bar(1, b = false)
 }</code></pre></section>
+<section id="_condicionales"><h2>Condicionales</h2><div class="paragraph"><p>En Kotlin podemos usar condicionales <code>if</code> como una función que retorna un valor:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">fun makeAnalyisOfCategory(catId: String): Unit {
+  val result = if (catId == "100") "Yes" else "No"
+  println(result)
+}</code></pre>
+<aside class="notes"><div class="paragraph"><p>En este ejemplo, vemos que si <code>catId</code> es igual a "100", el bloque condicional devuelve "Yes", de lo contrario, devuelve "No". El valor devuelto se asigna a <code>result</code>.</p></div></aside></section>
+<section id="_condicionales_2"><h2>Condicionales</h2><div class="paragraph"><p>También podemos usar los bloques <code>if-else</code> tradicionales:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">val number = 2
+if (number &lt; 10) {
+  println("number less that 10")
+} else if (number &gt; 10) {
+  println("number is greater that 10")
+}</code></pre></section>
+<section id="_condicionales_3"><h2>Condicionales</h2><div class="paragraph"><p>Kotlin también nos ofrece el comando <code>when</code>, el cual actúa como una sentencia <code>switch</code> avanzada:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">val name = "John"
+when (name) {
+    "John" -&gt; println("Hi man")
+    "Alice" -&gt; println("Hi lady")
+	else -&gt; println("Hi Unknown")
+}</code></pre></section>
+<section id="_condicionales_4"><h2>Condicionales</h2><div class="paragraph"><p><code>when</code> lo podemos combinar con el operador <code>in</code> para comparación de rangos:</p></div>
+<pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">when (x) {
+    in 1..10 -&gt; print("x is in the range")
+    in validNumbers -&gt; print("x is valid")
+    !in 10..20 -&gt; print("x is outside the range")
+    else -&gt; print("none of the above")
+}</code></pre>
+<aside class="notes"><div class="paragraph"><p>El operador <code>in</code>, tiene los siguientes usos en Kotlin:</p></div>
+<div class="ulist"><ul><li><p>especifica el objeto que se itera en un bucle for</p></li><li><p>se utiliza como operador infijo para verificar que un valor pertenece a un rango, una colección u otra entidad que define el método <code>contains</code></p></li><li><p>se usa en expresiones <code>when</code> con el mismo propósito</p></li><li><p>marca un parámetro de tipo como contravariante</p></li></ul></div></aside></section>
 <section id="_estructuras_de_repetición"><h2>Estructuras de repetición</h2><div class="paragraph"><p>Para recorrer colecciones Kotlin ofrece la sentencia <code>for..in</code>:</p></div>
 <pre class="highlight listingblock"><code data-noescape="" class="kotlin language-kotlin">val numbers = arrayOf("first", "second", "third", "fourth")
 for (n in numbers) {

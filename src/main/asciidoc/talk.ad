@@ -439,6 +439,74 @@ fun usage() {
 }
 ----
 
+== Condicionales
+
+En Kotlin podemos usar condicionales `if` como una función que retorna un valor:
+
+[source,kotlin]
+----
+fun makeAnalyisOfCategory(catId: String): Unit {
+  val result = if (catId == "100") "Yes" else "No"
+  println(result)
+}
+----
+[NOTE.speaker]
+====
+En este ejemplo, vemos que si `catId` es igual a "100", el bloque condicional devuelve "Yes", de lo contrario, devuelve "No". El valor devuelto se asigna a `result`.
+====
+
+== Condicionales
+
+También podemos usar los bloques `if-else` tradicionales:
+
+[source,kotlin]
+----
+val number = 2
+if (number < 10) {
+  println("number less that 10")
+} else if (number > 10) {
+  println("number is greater that 10")
+}
+----
+
+== Condicionales
+
+Kotlin también nos ofrece el comando `when`, el cual actúa como una sentencia `switch` avanzada:
+
+[source,kotlin]
+----
+val name = "John"
+when (name) {
+    "John" -> println("Hi man")
+    "Alice" -> println("Hi lady")
+	else -> println("Hi Unknown")
+}
+----
+
+== Condicionales
+
+`when` lo podemos combinar con el operador `in` para comparación de rangos:
+
+[source,kotlin]
+----
+when (x) {
+    in 1..10 -> print("x is in the range")
+    in validNumbers -> print("x is valid")
+    !in 10..20 -> print("x is outside the range")
+    else -> print("none of the above")
+}
+----
+
+[NOTE.speaker]
+====
+El operador `in`, tiene los siguientes usos en Kotlin:
+
+* especifica el objeto que se itera en un bucle for
+* se utiliza como operador infijo para verificar que un valor pertenece a un rango, una colección u otra entidad que define el método `contains`
+* se usa en expresiones `when` con el mismo propósito
+* marca un parámetro de tipo como contravariante
+====
+
 == Estructuras de repetición
 
 Para recorrer colecciones Kotlin ofrece la sentencia `for..in`:
