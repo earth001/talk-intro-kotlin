@@ -16,9 +16,9 @@
     <!-- Project configuration -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
-    <kotlin.version>1.3.70</kotlin.version>
+    <maven.compiler.source>14</maven.compiler.source>
+    <maven.compiler.target>14</maven.compiler.target>
+    <kotlin.version>1.3.71</kotlin.version>
     <!-- Presentation versions & config-->
     <project.slides.directory>${project.build.directory}/generated-slides</project.slides.directory>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -57,6 +57,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <compilerArgs>
+            --enable-preview
+          </compilerArgs>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -65,7 +70,7 @@
         <executions>
           <execution>
             <id>compile</id>
-            <phase>compile</phase>
+            <phase>process-sources</phase>
             <goals>
               <goal>compile</goal>
             </goals>

@@ -10,13 +10,18 @@ public class MainJava {
     final var estudiantes = List
         .of(new EstudianteJava("Julio"), new EstudianteJava("María", 12));
     final var mayorPuntaje = estudiantes.stream().max(comparingInt(es -> {
-      if (es.getPuntaje() == null) {
+      if (es.puntaje() == null) {
         return 0;
       } else {
-        return es.getPuntaje();
+        return es.puntaje();
       }
     }));
+    //String literal is preview feature in Java 14
     System.out
-        .println(String.format("El mayor puntaje en Java es de: %s", mayorPuntaje.orElse(null)));
+        .println(String.format(
+            """
+                El mayor puntaje en Java es de: 
+                  %s
+                """, mayorPuntaje.orElse(null)));
   }
 }
