@@ -22,10 +22,12 @@ Contenido de la presentación:
 ====
 
 == !
-image::kotlin-2-logo-png-transparent.png[background, size=auto]
+
+image::kotlin-2-logo-png-transparent.png[background,size=auto]
 // https://freebiesupply.com/logos/kotlin-logo-2/
 
 == Contenido
+
 * ¿Qué es Kotlin?
 * Características
 * Server side development
@@ -33,6 +35,7 @@ image::kotlin-2-logo-png-transparent.png[background, size=auto]
 * Sintaxis
 
 == ¿Qué es Kotlin?
+
 * Kotlin es un lenguaje de programación con tipado estático para aplicaciones multiplataforma.
 * Fue creado por la compañía checa JetBrains en 2010 y liberado bajo licencia Apache en 2011.
 * Su nombre proviene de la Isla Kotlin ubicada al oeste de San Petersburgo, Rusia.
@@ -44,9 +47,11 @@ image::kotlin-2-logo-png-transparent.png[background, size=auto]
 Tiene estructuras que ayudan a reducir el código repetitivo.
 
 == Seguro
+
 Ofrece control en compilación de referencias nulas y conversiones inválidas de clases.
 
 == Interoperable
+
 Es compatible con Java y Android.
 
 == Amistoso
@@ -67,9 +72,10 @@ Soportado por los entornos de desarrollo de JetBrains (IntelliJ IDEA, Android St
 Expresividad: Este lenguaje se destaca en presentar sintaxis innovadora para reducir el código repetitivo y manejar con facilidad abstracciones.
 
 Escalabilidad: Kotlin soporta corrutinas que nos permiten usar programación asincrónica, esto nos beneficia al momento de acceder a recursos (precisamos de ellos solo cuando son necesarios) y nos ofrece facilidad para escalar.
-	Interoperabilidad: Es compatible con las librerías y los frameworks Java.
+Interoperabilidad: Es compatible con las librerías y los frameworks Java.
 
-Migración: Puede usarse en conjunto con una base de código Java, lo que nos permite hacer una migración gradual de los sistemas. Esto nos habilita para escribir nuevas funcionalidades con Kotlin y dejar funcionalidades antiguas con Java.
+Migración: Puede usarse en conjunto con una base de código Java, lo que nos permite hacer una migración gradual de los sistemas.
+Esto nos habilita para escribir nuevas funcionalidades con Kotlin y dejar funcionalidades antiguas con Java.
 
 Herramientas: Soporta IDEs populares como IntelliJ y Eclipse, además ofrece plugins especiales para integración con Frameworks.
 
@@ -78,6 +84,7 @@ Compatibilidad: Lo podemos utilizar con Spring, Vert.x, Ktor y kotlinx.html.
 ====
 
 == Android
+
 * Compatibilidad
 * Rendimiento
 * Interoperabilidad
@@ -94,9 +101,10 @@ Rendimiento: Ofrece un rendimiento igual al de Java y en algunos casos superior.
 Interoperabilidad: Al ser compatible con Java, las librerías existentes en Android se pueden usar en Kotlin.
 
 Tamaño: El runtime para Android es chico, solo se agregan en promedio 100KB extras al apk.
-	Tiempo de compilación: Ha sido optimizado para ser eficiente en compilación incremental.
+Tiempo de compilación: Ha sido optimizado para ser eficiente en compilación incremental.
 
-Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicionalmente los IDEs ofrecen herramientas para convertir código Java a Kotlin. JetBrains también ofrece guías y tutoriales para los que deseen aprender.
+Curva de aprendizaje: La transición Java a Kotlin es bastante sencilla, adicionalmente los IDEs ofrecen herramientas para convertir código Java a Kotlin.
+JetBrains también ofrece guías y tutoriales para los que deseen aprender.
 
 ====
 
@@ -127,25 +135,40 @@ fun main() { //<3>
 ====
 <1> Tenemos la declaración del paquete, y aunque parece similar a Java podemos observar que no hay “;” al final, esto es porque en Kotlin el uso de “;” es opcional.
 
-<2> En este bloque tenemos la declaración de una `data class`, esta es un tipo de clase que podemos usar para almacenar datos. La podemos comparar con un Java Bean o un DTO donde el compilador genera por nosotros el constructor primario, métodos `hashCode`, `equals`, `toString`, `copy`, entre otros.
+<2> En este bloque tenemos la declaración de una `data class`, esta es un tipo de clase que podemos usar para almacenar datos.
+La podemos comparar con un Java Bean o un DTO donde el compilador genera por nosotros el constructor primario, métodos `hashCode`, `equals`, `toString`, `copy`, entre otros.
 Otro aspecto importante que vemos es la declaración de propiedades con la palabra reservada `val`, con ella declaramos variables de solo lectura, que pueden ser inicializadas una sola vez, un efecto similar a lo que se lograría con el uso de la palabra reservada `final` en java, haciéndolas inmutables.
 Considerar también que el tipo de la variable se define luego de su declaración, esto porque se le da prioridad al nombre de las variables con el objetivo de mejorar la legibilidad.
-Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final. Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación. En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor `null` la aplicación no compilará.
+Adicionalmente vemos dos maneras de definir los tipos de datos, la primera colocándolo directamente como es el caso de String, y la otra agregándole un “?” al final.
+Esto es porque el compilador hace un control estricto de la nulabilidad, cuando agregamos el “?” le estamos diciendo que esta variable puede almacenar datos nulos, en el caso de que no lo hagamos nos dará un error de compilación.
+En nuestro caso si inicializamos un EstudianteKotlin con un nombre con valor `null` la aplicación no compilará.
 
-<3> Aquí hacemos la declaración de la función main. Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase y los argumentos de la función son opcionales.
+<3> Aquí hacemos la declaración de la función main.
+Como podemos ver, a diferencia de Java, se pueden declarar funciones fuera de una clase y los argumentos de la función son opcionales.
 
-<4> En estás dos líneas se está creando una lista de `EstudianteKotlin`. Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables. En este caso listOf crea una lista inmutable. Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes. Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable `estudiantes` es una `List` inmutable con elementos de tipo `EstudianteKotlin`; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.
+<4> En estás dos líneas se está creando una lista de `EstudianteKotlin`.
+Este lenguaje cuenta con una librería estándar para manejo de colecciones, de hecho, tiene variantes para manejar colecciones inmutables o mutables.
+En este caso listOf crea una lista inmutable.
+Podemos observar que no se usa la palabra “new” para instanciar objetos como en otros lenguajes.
+Otro punto importante es que en Kotlin no es necesario definir el tipo de dato en asignaciones o retorno de funciones, esto pues el compilador hace uso de inferencia de tipos (type inference) para determinarlo en tiempo de compilación; la variable `estudiantes` es una `List` inmutable con elementos de tipo `EstudianteKotlin`; toda esa información se obtiene en tiempo de compilación por cómo está declarado el método listOf de la librería estándar.
 
-<5> Inicializamos un objeto usando parámetros nombrados (named parameters), esto nos permite llamar una función o constructor indicando los valores que toman los argumentos de manera explícita, la intención de esto es mejorar la legibilidad en funciones que tienen muchos parámetros. Incluso permite que se pasen los argumentos en distinto orden al que han sido declarados en la firma del método.
+<5> Inicializamos un objeto usando parámetros nombrados (named parameters), esto nos permite llamar una función o constructor indicando los valores que toman los argumentos de manera explícita, la intención de esto es mejorar la legibilidad en funciones que tienen muchos parámetros.
+Incluso permite que se pasen los argumentos en distinto orden al que han sido declarados en la firma del método.
 
-<6> Aquí usamos la función `maxBy` de la librería estándar de colecciones. El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos. Considerar que la función es enviada como una expresión lambda (Lambda Expression), que no es otra cosa que una función anónima que puede ser usada como valor. Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.
+<6> Aquí usamos la función `maxBy` de la librería estándar de colecciones.
+El objetivo de esta función es retornar el primer elemento que tenga el mayor valor según la función indicada, o null si no hay elementos.
+Considerar que la función es enviada como una expresión lambda (Lambda Expression), que no es otra cosa que una función anónima que puede ser usada como valor.
+Esta estructura viene de la programación funcional y la podemos usar puesto que Kotlin tiene la capacidad de combinar programación funcional con programación orientada a objetos.
 El parámetro `it` de nuestro ejemplo es el nombre por defecto que toma el parámetro de una expresión lambda que recibe un sólo parámetro, en este caso un `EstudianteKotlin`.
 El operador Elvis :? (sí, se llama así por el cantante) que aparece en la expresión evalúa la edad de los estudiantes y en caso de que sea null retorna 0. El objetivo de este operador es hacer un control de nulos de manera más concisa.
 
-<7> Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto. Al usar una data class en nuestro ejemplo se llama de manera implícita al método `toString()` obteniendo la salida que vimos anteriormente. Otro punto que podemos ver es que Kotlin literales de String de varias líneas.
+<7> Por último, imprimimos el resultado usando plantillas de cadenas de texto (String templates) las cuales evalúan el objeto precedido por el símbolo $, en nuestro caso mayorPuntaje, y lo concatenan en la cadena de texto.
+Al usar una data class en nuestro ejemplo se llama de manera implícita al método `toString()` obteniendo la salida que vimos anteriormente.
+Otro punto que podemos ver es que Kotlin literales de String de varias líneas.
 ====
 
 == !
+
 [source,java]
 ----
 package com.proitc.java;
@@ -153,87 +176,47 @@ package com.proitc.java;
 import static java.util.Comparator.comparingInt;
 
 import java.util.List;
+import java.util.OptionalInt;
 
-class MainJava {
+public class MainJava {
 
   public static void main(String[] args) {
     final var estudiantes = List
-        .of(new EstudianteJava("Julio"), new EstudianteJava("María", 12));
-    final var mayorPuntaje = estudiantes.stream().max(comparingInt(es -> {
-      if (es.getPuntaje() == null) {
-        return 0;
-      } else {
-        return es.getPuntaje();
-      }
-    }));
+        .of(new EstudianteJava("Julio"), new EstudianteJava("María", OptionalInt.of(12)));
+    final var mayorPuntaje = estudiantes.stream().max(comparingInt(es -> es.puntaje().orElse(0)));
+    //String literal is preview feature in Java 14
     System.out
-        .println(String.format("El mayor puntaje en Java es de: %s",
-          mayorPuntaje.orElse(null)));
+        .println(String.format(
+            """
+                El mayor puntaje en Java es de:
+                  %s
+                """, mayorPuntaje.orElse(null)));
   }
 }
 ----
 
 == !
+
 [source,java]
 ----
 package com.proitc.java;
 
 import java.util.Objects;
 
-class EstudianteJava {
+//Record is a preview feature in Java 14
+public record EstudianteJava(String nombre, Integer puntaje) {
 
-  private final String nombre;
-  private final Integer puntaje;
-
-  EstudianteJava(String nombre, Integer puntaje) {
+  public EstudianteJava {
     Objects.requireNonNull(nombre);
-    this.nombre = nombre;
-    this.puntaje = puntaje;
   }
 
-  EstudianteJava(String nombre) {
+  public EstudianteJava(String nombre) {
     this(nombre, null);
   }
-  // Getters, Setters, Equals y Hashcode
-  public String getNombre() {
-    return nombre;
-  }
-
-  public Integer getPuntaje() {
-    return puntaje;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    EstudianteJava person = (EstudianteJava) o;
-    return Objects.equals(getNombre(), person.getNombre()) &&
-        Objects.equals(getPuntaje(), person.getPuntaje());
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getNombre(), getPuntaje());
-  }
-
-  @Override
-  public String toString() {
-    return "EstudianteJava{" +
-        "nombre='" + getNombre() + '\'' +
-        ", puntaje=" + getPuntaje() +
-        '}';
-  }
-
 }
 ----
 
 == Sintaxis
-
 
 == Definición de paquetes
 
@@ -266,7 +249,8 @@ fun sum(a: Int, b: Int) = a + b
 
 [NOTE.speaker]
 ====
-Una `expression`, en programación, es una combinación de constantes, variables o funciones, que es interpretada de acuerdo a las normas particulares de precedencia y asociación para un lenguaje de programación en particular. Como en matemáticas, la expresión es su valor evaluado, es decir, la expresión es una representación de ese valor.
+Una `expression`, en programación, es una combinación de constantes, variables o funciones, que es interpretada de acuerdo a las normas particulares de precedencia y asociación para un lenguaje de programación en particular.
+Como en matemáticas, la expresión es su valor evaluado, es decir, la expresión es una representación de ese valor.
 
 Fuente: https://en.wikipedia.org/wiki/Expression_(computer_science)
 ====
@@ -356,7 +340,9 @@ fun ejemplo(a: Any, b: Any) =
 
 [NOTE.speaker]
 ====
-La clase `Any` es la raíz de la jerarquía de clases de Kotlin. Todos los objetos en Kotlin tienen a `Any` como superclase. Similar a lo que en Java sería la clase `Object`.
+La clase `Any` es la raíz de la jerarquía de clases de Kotlin.
+Todos los objetos en Kotlin tienen a `Any` como superclase.
+Similar a lo que en Java sería la clase `Object`.
 
 Fuente: https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html
 ====
@@ -373,7 +359,10 @@ class ItemManager(val categoryId: String, val dbConnection: String) {
 
 [NOTE.speaker]
 ====
-La declaración de clases en Kotlin es bastante concisa. Su sintaxis nos permite declarar los atributos y el constructor en su definición. Este constructor, llamado también constructor primario recibe los atributos y los inicializa. Si se requieren constructores adicionales se usa la palabra `constructor`.
+La declaración de clases en Kotlin es bastante concisa.
+Su sintaxis nos permite declarar los atributos y el constructor en su definición.
+Este constructor, llamado también constructor primario recibe los atributos y los inicializa.
+Si se requieren constructores adicionales se usa la palabra `constructor`.
 
 A continuación se muestra un segundo constructor donde se asigna la propiedad email.
 
@@ -402,7 +391,8 @@ data class Customer(val name: String,
 
 == Herencia
 
-Por defecto las clases en Kotlin están cerradas para extensión, el equivalente a clases `final` en java. Para permitir la extensión se usa la palabra reservada `open`.
+Por defecto las clases en Kotlin están cerradas para extensión, el equivalente a clases `final` en java.
+Para permitir la extensión se usa la palabra reservada `open`.
 
 [source,kotlin]
 ----
@@ -414,6 +404,7 @@ open class Item(val id: String, val name: String = "unknown_name") {
 ----
 
 == Herencia
+
 Veamos ahora un ejemplo de extensión:
 
 [source,kotlin]
@@ -450,9 +441,11 @@ fun makeAnalyisOfCategory(catId: String): Unit {
   println(result)
 }
 ----
+
 [NOTE.speaker]
 ====
-En este ejemplo, vemos que si `catId` es igual a "100", el bloque condicional devuelve "Yes", de lo contrario, devuelve "No". El valor devuelto se asigna a `result`.
+En este ejemplo, vemos que si `catId` es igual a "100", el bloque condicional devuelve "Yes", de lo contrario, devuelve "No".
+El valor devuelto se asigna a `result`.
 ====
 
 == Condicionales
@@ -529,8 +522,9 @@ for (i in 2..9 step 2) {
     println(i)
 }
 ----
-Este constructor es inclusivo (lado inferior y superior). El parámetro `step` es opcional y en este caso indica el incremento.
 
+Este constructor es inclusivo (lado inferior y superior).
+El parámetro `step` es opcional y en este caso indica el incremento.
 
 == Null
 
@@ -555,6 +549,7 @@ val l = b.length // error: variable 'b' puede ser null
 ----
 
 == Null
+
 Validando referencias nulas:
 
 [source,kotlin]
@@ -575,6 +570,7 @@ val l = b?.length // retorna b.length si b no es nula y null de lo contrario.
 ----
 val l = b?.length ?: -1
 ----
+
 Si la expresión a la izquierda de ?: es no nula, el operador elvis la retorna, de lo contrario retorna la expresión de la derecha.
 
 == Extension functions
@@ -659,6 +655,7 @@ val item = rwList.firstOrNull()
 ----
 
 == Funciones de orden superior
+
 Funciones que toman como parámetro otra función
 
 [source,kotlin]
@@ -674,6 +671,7 @@ strings.filter { it.length == 5 }.map { it.toUpperCase() }
 ----
 
 == Conclusiones
+
 * Sintaxis moderna
 * Inferencia de tipos
 * Control de nulos
@@ -682,7 +680,8 @@ strings.filter { it.length == 5 }.map { it.toUpperCase() }
 
 [NOTE.speaker]
 ====
-Kotlin es un lenguaje Open Source moderno con muchas características como: soporte de inferencia de tipos, control de nulos en tiempo de compilación, programación asíncrona y sintaxis flexible. Además, es compatible con el ecosistema Java y podemos usarlo en backend de servidores y aplicaciones Android.
+Kotlin es un lenguaje Open Source moderno con muchas características como: soporte de inferencia de tipos, control de nulos en tiempo de compilación, programación asíncrona y sintaxis flexible.
+Además, es compatible con el ecosistema Java y podemos usarlo en backend de servidores y aplicaciones Android.
 
 A esto podemos agregar que nos permite combinar programación orientada objetos y funcional con una sintaxis amigable y expresiva.
 

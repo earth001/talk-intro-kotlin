@@ -1,16 +1,17 @@
 package com.proitc.java;
 
 import java.util.Objects;
+import java.util.OptionalInt;
 
 //Record is preview feature in Java 14
-public record EstudianteJava(String nombre, Integer puntaje) {
+public record EstudianteJava(String nombre, OptionalInt puntaje) {
 
   public EstudianteJava {
     Objects.requireNonNull(nombre);
   }
 
   public EstudianteJava(String nombre) {
-    this(nombre, null);
+    this(nombre, OptionalInt.empty());
   }
 }
 
