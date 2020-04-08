@@ -104,11 +104,10 @@ public class MainJava {
     final var mayorPuntaje = estudiantes.stream().max(comparingInt(es -&gt; es.puntaje().orElse(0)));
     //String literal is preview feature in Java 14
     System.out
-        .println(String.format(
-            """
-                El mayor puntaje en Java es de:
-                  %s
-                """, mayorPuntaje.orElse(null)));
+        .println("""
+            El mayor puntaje en Java es de:
+              %s
+            """.formatted(mayorPuntaje.orElse(null)));
   }
 }</code></pre></section>
 <section><pre class="highlight listingblock"><code data-noescape="" class="java language-java">package com.proitc.java;
